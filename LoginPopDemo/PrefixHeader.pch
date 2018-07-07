@@ -1,0 +1,108 @@
+//
+//  PrefixHeader.pch
+//  LoginPopDemo
+//
+//  Created by ganyanchao on 2018/7/7.
+//  Copyright © 2018年 G.Y. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+//引入该宏后，不用区别mas_equalTo和equalTo等，但一定要在Masonry.h头文件之前引入。
+#define MAS_SHORTHAND_GLOBALS
+//引入该宏后，不用区别mas_right和right等，但一定要在Masonry.h头文件之前引入
+#define MAS_SHORTHAND
+
+#import "YYKit.h"
+#import "Masonry.h"
+#import "ZXRouter.h"
+#import "BFAlertVC.h"
+#import "DVLColorUtil.h"
+#import "NSArray+ZXTool.h"
+#import "UIView+Ext.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+
+#define DVLLoadNib(aNibName) [[[NSBundle mainBundle] loadNibNamed:aNibName owner:nil options:nil] objectAtIndex:0]
+
+
+#define FONT(f) [UIFont systemFontOfSize:(f)]
+
+
+
+
+//category 属性生成器, 支持strong 类型的属性
+#define bf_strong_property(type, name)  _bf_strong_property(type, name)
+#define bf_strong_implement(type, name) _bf_strong_implement(type, name)
+
+//category 属性生成器，支持 基本类型 int float
+#define bf_assign_property(type, name) _bf_assign_property(type, name)
+#define bf_assign_implement(type, name) _bf_assign_implement(type, name)
+
+
+#define bf_str_c(a) #a
+
+//strong 对应实现
+#define _bf_strong_property(type, name) \
+property (nonatomic, strong, setter=set__##name:, getter=__##name) type name
+
+#define _bf_strong_implement(type, name) \
+- (void)set__##name:(type)name   \
+{ \
+char *p = bf_str_c(type); \
+NSString *totype = [NSString stringWithUTF8String:p]; \
+if ([totype containsString:@"*"] || [totype containsString:@"id"]) { \
+type value = name;\
+[self setAssociateValue:value withKey:#name];  \
+} \
+} \
+- (type)__##name { \
+type value = [self getAssociatedValueForKey:#name]; \
+char *p = bf_str_c(type); \
+NSString *totype = [NSString stringWithUTF8String:p]; \
+if ([totype containsString:@"*"] || [totype containsString:@"id"]) { \
+return value; \
+} \
+return nil; \
+}
+
+//assgin 对应实现
+#define _bf_assign_property(type, name) \
+property (nonatomic, assign, setter=set__##name:, getter=__##name) type name
+
+#define _bf_assign_implement(type, name) \
+- (void)set__##name:(type)name   \
+{ \
+char *p = bf_str_c(type); \
+NSString *totype = [NSString stringWithUTF8String:p]; \
+if ([totype containsString:@"int"] || \
+[totype containsString:@"float"]  \
+) { \
+id value = @(name);\
+[self setAssociateValue:value withKey:#name];  \
+} \
+} \
+- (type)__##name { \
+type value = [self getAssociatedValueForKey:#name]; \
+char *p = bf_str_c(type); \
+NSString *totype = [NSString stringWithUTF8String:p]; \
+if ([totype containsString:@"int"] { \
+return [value intValue] \
+} \
+else if [totype containsString:@"float"]) { \
+return [value floatValue]; \
+} \
+return 0; \
+}
+
+
+
+
+#endif /* PrefixHeader_pch */

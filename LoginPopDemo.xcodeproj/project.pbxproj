@@ -7,15 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D6981DD20F070E100B0008C /* NSArray+ZXTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6981DB20F070E100B0008C /* NSArray+ZXTool.m */; };
 		0D8D38D620F06898003E89FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D38D520F06898003E89FD /* AppDelegate.m */; };
 		0D8D38D920F06898003E89FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D38D820F06898003E89FD /* ViewController.m */; };
 		0D8D38DC20F06898003E89FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D8D38DA20F06898003E89FD /* Main.storyboard */; };
 		0D8D38DE20F06899003E89FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D8D38DD20F06899003E89FD /* Assets.xcassets */; };
-		0D8D38E120F06899003E89FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D8D38DF20F06899003E89FD /* LaunchScreen.storyboard */; };
 		0D8D38E420F06899003E89FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D38E320F06899003E89FD /* main.m */; };
+		0D8D38F520F068EB003E89FD /* BFPopSequenceRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D38EC20F068EB003E89FD /* BFPopSequenceRule.m */; };
+		0D8D38F620F068EB003E89FD /* BFAlertVC+PopRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D38EE20F068EB003E89FD /* BFAlertVC+PopRule.m */; };
+		0D8D38F720F068EB003E89FD /* BFPopRuleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D38EF20F068EB003E89FD /* BFPopRuleItem.m */; };
+		0D8D38F820F068EB003E89FD /* PopAuthResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D8D38F320F068EB003E89FD /* PopAuthResultView.xib */; };
+		0D8D38F920F068EB003E89FD /* PopAuthResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D38F420F068EB003E89FD /* PopAuthResultView.m */; };
+		0D8D38FE20F06938003E89FD /* BFAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D38FA20F06938003E89FD /* BFAlertVC.m */; };
+		0D8D38FF20F06938003E89FD /* BFSimpleAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D38FC20F06938003E89FD /* BFSimpleAlertView.m */; };
+		0D8D390320F069AD003E89FD /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D390120F069AD003E89FD /* RIButtonItem.m */; };
+		0D8D390720F06A48003E89FD /* ZXRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D390620F06A48003E89FD /* ZXRouter.m */; };
+		0DB139AB20F0798E00400A73 /* DVLColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB139A920F0798E00400A73 /* DVLColorUtil.m */; };
+		0DDBDDF920F07D7700A98E22 /* UIView+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DDBDDF820F07D7700A98E22 /* UIView+Ext.m */; };
+		0DDBDDFB20F07FB200A98E22 /* Launch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DDBDDFA20F07FB200A98E22 /* Launch.xib */; };
+		447B3F3C5C6F3936ACF29648 /* libPods-LoginPopDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE690DBB5E2CFF4E28AA546 /* libPods-LoginPopDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00E6064ED2883D068032536A /* Pods-LoginPopDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginPopDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoginPopDemo/Pods-LoginPopDemo.release.xcconfig"; sourceTree = "<group>"; };
+		0D6981DA20F06F5700B0008C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		0D6981DB20F070E100B0008C /* NSArray+ZXTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ZXTool.m"; sourceTree = "<group>"; };
+		0D6981DC20F070E100B0008C /* NSArray+ZXTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ZXTool.h"; sourceTree = "<group>"; };
 		0D8D38D120F06898003E89FD /* LoginPopDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginPopDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D8D38D420F06898003E89FD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0D8D38D520F06898003E89FD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -23,9 +40,32 @@
 		0D8D38D820F06898003E89FD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0D8D38DB20F06898003E89FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0D8D38DD20F06899003E89FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0D8D38E020F06899003E89FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D8D38E220F06899003E89FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D8D38E320F06899003E89FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0D8D38EB20F068EB003E89FD /* BFAlertVC+PopRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BFAlertVC+PopRule.h"; sourceTree = "<group>"; };
+		0D8D38EC20F068EB003E89FD /* BFPopSequenceRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPopSequenceRule.m; sourceTree = "<group>"; };
+		0D8D38ED20F068EB003E89FD /* BFPopRuleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPopRuleItem.h; sourceTree = "<group>"; };
+		0D8D38EE20F068EB003E89FD /* BFAlertVC+PopRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BFAlertVC+PopRule.m"; sourceTree = "<group>"; };
+		0D8D38EF20F068EB003E89FD /* BFPopRuleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPopRuleItem.m; sourceTree = "<group>"; };
+		0D8D38F020F068EB003E89FD /* BFPopSequenceRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPopSequenceRule.h; sourceTree = "<group>"; };
+		0D8D38F220F068EB003E89FD /* PopAuthResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopAuthResultView.h; sourceTree = "<group>"; };
+		0D8D38F320F068EB003E89FD /* PopAuthResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopAuthResultView.xib; sourceTree = "<group>"; };
+		0D8D38F420F068EB003E89FD /* PopAuthResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopAuthResultView.m; sourceTree = "<group>"; };
+		0D8D38FA20F06938003E89FD /* BFAlertVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFAlertVC.m; sourceTree = "<group>"; };
+		0D8D38FB20F06938003E89FD /* BFAlertVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFAlertVC.h; sourceTree = "<group>"; };
+		0D8D38FC20F06938003E89FD /* BFSimpleAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFSimpleAlertView.m; sourceTree = "<group>"; };
+		0D8D38FD20F06938003E89FD /* BFSimpleAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFSimpleAlertView.h; sourceTree = "<group>"; };
+		0D8D390120F069AD003E89FD /* RIButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIButtonItem.m; sourceTree = "<group>"; };
+		0D8D390220F069AD003E89FD /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
+		0D8D390520F06A48003E89FD /* ZXRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRouter.h; sourceTree = "<group>"; };
+		0D8D390620F06A48003E89FD /* ZXRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRouter.m; sourceTree = "<group>"; };
+		0DB139A920F0798E00400A73 /* DVLColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVLColorUtil.m; sourceTree = "<group>"; };
+		0DB139AA20F0798E00400A73 /* DVLColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVLColorUtil.h; sourceTree = "<group>"; };
+		0DDBDDF720F07D7700A98E22 /* UIView+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Ext.h"; sourceTree = "<group>"; };
+		0DDBDDF820F07D7700A98E22 /* UIView+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Ext.m"; sourceTree = "<group>"; };
+		0DDBDDFA20F07FB200A98E22 /* Launch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Launch.xib; sourceTree = "<group>"; };
+		1DED1968A946E9315DE03781 /* Pods-LoginPopDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginPopDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoginPopDemo/Pods-LoginPopDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		CDE690DBB5E2CFF4E28AA546 /* libPods-LoginPopDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LoginPopDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447B3F3C5C6F3936ACF29648 /* libPods-LoginPopDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +85,8 @@
 			children = (
 				0D8D38D320F06898003E89FD /* LoginPopDemo */,
 				0D8D38D220F06898003E89FD /* Products */,
+				4C861E13FB4D7389B912DA9B /* Pods */,
+				60375709E37AD38C76DFC491 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,17 +101,90 @@
 		0D8D38D320F06898003E89FD /* LoginPopDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0D8D390420F069BC003E89FD /* Depend */,
+				0D8D390020F0694B003E89FD /* UIUtil */,
+				0D8D38EA20F068EB003E89FD /* PopManager */,
 				0D8D38D420F06898003E89FD /* AppDelegate.h */,
 				0D8D38D520F06898003E89FD /* AppDelegate.m */,
 				0D8D38D720F06898003E89FD /* ViewController.h */,
 				0D8D38D820F06898003E89FD /* ViewController.m */,
 				0D8D38DA20F06898003E89FD /* Main.storyboard */,
 				0D8D38DD20F06899003E89FD /* Assets.xcassets */,
-				0D8D38DF20F06899003E89FD /* LaunchScreen.storyboard */,
 				0D8D38E220F06899003E89FD /* Info.plist */,
+				0D6981DA20F06F5700B0008C /* PrefixHeader.pch */,
+				0DDBDDFA20F07FB200A98E22 /* Launch.xib */,
 				0D8D38E320F06899003E89FD /* main.m */,
 			);
 			path = LoginPopDemo;
+			sourceTree = "<group>";
+		};
+		0D8D38EA20F068EB003E89FD /* PopManager */ = {
+			isa = PBXGroup;
+			children = (
+				0D8D38F120F068EB003E89FD /* PopViews */,
+				0D8D38F020F068EB003E89FD /* BFPopSequenceRule.h */,
+				0D8D38EC20F068EB003E89FD /* BFPopSequenceRule.m */,
+				0D8D38ED20F068EB003E89FD /* BFPopRuleItem.h */,
+				0D8D38EF20F068EB003E89FD /* BFPopRuleItem.m */,
+				0D8D38EB20F068EB003E89FD /* BFAlertVC+PopRule.h */,
+				0D8D38EE20F068EB003E89FD /* BFAlertVC+PopRule.m */,
+			);
+			path = PopManager;
+			sourceTree = "<group>";
+		};
+		0D8D38F120F068EB003E89FD /* PopViews */ = {
+			isa = PBXGroup;
+			children = (
+				0D8D38F320F068EB003E89FD /* PopAuthResultView.xib */,
+				0D8D38F220F068EB003E89FD /* PopAuthResultView.h */,
+				0D8D38F420F068EB003E89FD /* PopAuthResultView.m */,
+			);
+			path = PopViews;
+			sourceTree = "<group>";
+		};
+		0D8D390020F0694B003E89FD /* UIUtil */ = {
+			isa = PBXGroup;
+			children = (
+				0D8D38FB20F06938003E89FD /* BFAlertVC.h */,
+				0D8D38FA20F06938003E89FD /* BFAlertVC.m */,
+				0D8D38FD20F06938003E89FD /* BFSimpleAlertView.h */,
+				0D8D38FC20F06938003E89FD /* BFSimpleAlertView.m */,
+			);
+			path = UIUtil;
+			sourceTree = "<group>";
+		};
+		0D8D390420F069BC003E89FD /* Depend */ = {
+			isa = PBXGroup;
+			children = (
+				0DDBDDF720F07D7700A98E22 /* UIView+Ext.h */,
+				0DDBDDF820F07D7700A98E22 /* UIView+Ext.m */,
+				0DB139AA20F0798E00400A73 /* DVLColorUtil.h */,
+				0DB139A920F0798E00400A73 /* DVLColorUtil.m */,
+				0D6981DC20F070E100B0008C /* NSArray+ZXTool.h */,
+				0D6981DB20F070E100B0008C /* NSArray+ZXTool.m */,
+				0D8D390520F06A48003E89FD /* ZXRouter.h */,
+				0D8D390620F06A48003E89FD /* ZXRouter.m */,
+				0D8D390220F069AD003E89FD /* RIButtonItem.h */,
+				0D8D390120F069AD003E89FD /* RIButtonItem.m */,
+			);
+			path = Depend;
+			sourceTree = "<group>";
+		};
+		4C861E13FB4D7389B912DA9B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1DED1968A946E9315DE03781 /* Pods-LoginPopDemo.debug.xcconfig */,
+				00E6064ED2883D068032536A /* Pods-LoginPopDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		60375709E37AD38C76DFC491 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CDE690DBB5E2CFF4E28AA546 /* libPods-LoginPopDemo.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,6 +194,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0D8D38E720F06899003E89FD /* Build configuration list for PBXNativeTarget "LoginPopDemo" */;
 			buildPhases = (
+				7D1A8B969CE4AB945943BCF1 /* [CP] Check Pods Manifest.lock */,
 				0D8D38CD20F06898003E89FD /* Sources */,
 				0D8D38CE20F06898003E89FD /* Frameworks */,
 				0D8D38CF20F06898003E89FD /* Resources */,
@@ -128,7 +245,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D8D38E120F06899003E89FD /* LaunchScreen.storyboard in Resources */,
+				0DDBDDFB20F07FB200A98E22 /* Launch.xib in Resources */,
+				0D8D38F820F068EB003E89FD /* PopAuthResultView.xib in Resources */,
 				0D8D38DE20F06899003E89FD /* Assets.xcassets in Resources */,
 				0D8D38DC20F06898003E89FD /* Main.storyboard in Resources */,
 			);
@@ -136,14 +254,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7D1A8B969CE4AB945943BCF1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LoginPopDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0D8D38CD20F06898003E89FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D8D38F720F068EB003E89FD /* BFPopRuleItem.m in Sources */,
+				0D8D390320F069AD003E89FD /* RIButtonItem.m in Sources */,
+				0D6981DD20F070E100B0008C /* NSArray+ZXTool.m in Sources */,
+				0D8D38F920F068EB003E89FD /* PopAuthResultView.m in Sources */,
+				0DDBDDF920F07D7700A98E22 /* UIView+Ext.m in Sources */,
 				0D8D38D920F06898003E89FD /* ViewController.m in Sources */,
 				0D8D38E420F06899003E89FD /* main.m in Sources */,
+				0DB139AB20F0798E00400A73 /* DVLColorUtil.m in Sources */,
+				0D8D38F520F068EB003E89FD /* BFPopSequenceRule.m in Sources */,
+				0D8D38FF20F06938003E89FD /* BFSimpleAlertView.m in Sources */,
 				0D8D38D620F06898003E89FD /* AppDelegate.m in Sources */,
+				0D8D38F620F068EB003E89FD /* BFAlertVC+PopRule.m in Sources */,
+				0D8D390720F06A48003E89FD /* ZXRouter.m in Sources */,
+				0D8D38FE20F06938003E89FD /* BFAlertVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,14 +306,6 @@
 				0D8D38DB20F06898003E89FD /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0D8D38DF20F06899003E89FD /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0D8D38E020F06899003E89FD /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -281,11 +423,16 @@
 		};
 		0D8D38E820F06899003E89FD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DED1968A946E9315DE03781 /* Pods-LoginPopDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CB47K9F6J;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LoginPopDemo/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/LoginPopDemo\"/**";
 				INFOPLIST_FILE = LoginPopDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,11 +445,16 @@
 		};
 		0D8D38E920F06899003E89FD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00E6064ED2883D068032536A /* Pods-LoginPopDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CB47K9F6J;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LoginPopDemo/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/LoginPopDemo\"/**";
 				INFOPLIST_FILE = LoginPopDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

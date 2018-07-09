@@ -15,7 +15,7 @@
 #import "PopAuthResultView.h"
 
 NSMutableArray *_sMArr;
-NSInteger _needShowIndex;
+BFPopRuleItem *_needShowIndex;
 
 @implementation BFPopSequenceRule
 
@@ -26,7 +26,7 @@ NSInteger _needShowIndex;
 
 + (void)makeRule {
     _sMArr = @[].mutableCopy;
-    _needShowIndex = 0;
+    _needShowIndex = nil;
     
     BFPopRuleItem *t1 = [self authPopItem];
     BFPopRuleItem *test = [self authPopItem];
@@ -37,9 +37,9 @@ NSInteger _needShowIndex;
     for (int i = 0; i < _sMArr.count; i ++) {
         BFPopRuleItem *preT = [_sMArr safeObjectAtIndex:i-1];
         BFPopRuleItem *t = _sMArr[i];
-        t.popIndex = i;
         preT.next = t;
     }
+    _needShowIndex = _sMArr.firstObject;
 }
 
 #pragma mark - Public
@@ -48,17 +48,16 @@ NSInteger _needShowIndex;
         t.type = PutTypeSerial;
     }
     BFPopRuleItem *first = _sMArr.firstObject;
-    if (first.request) {
-        first.request(first, nil);
-    }
+    //NS_BLOCK_ASSERTIONS :release 下阻止 assert 生效
+    NSAssert(first.request != nil, @"request handle must not nil");
+    first.request(first, nil);
 }
 
 + (void)concurrentPut {
     for (BFPopRuleItem *t in _sMArr) {
         t.type = PutTypeConcurrent;
-        if (t.request) {
-            t.request(t, nil);
-        }
+        NSAssert(t.request != nil, @"request handle must not nil");
+        t.request(t, nil);
     }
 }
 
@@ -66,19 +65,17 @@ NSInteger _needShowIndex;
 
 + (void)clearData {
     _sMArr = nil;
-    _needShowIndex = 0;
+    _needShowIndex = nil;
 }
 
 + (void)prepareForNext {
-    if (_needShowIndex < _sMArr.count -1) {
-        _needShowIndex += 1;
-    }
+    _needShowIndex = _needShowIndex.next;
 }
 
 #pragma mark - Core
 
 + (BOOL)isIndexReadyForItem:(BFPopRuleItem *)item {
-    if (item.popIndex != _needShowIndex) {
+    if (item != _needShowIndex) {
         return NO;
     }
     return YES;
@@ -97,7 +94,8 @@ NSInteger _needShowIndex;
     //请求认证结果弹窗
     BFPopRuleItem *t = BFPopRuleItem.new;
     t.request = ^(BFPopRuleItem *item, id future) {
-        //将结果保存 ..eg:
+        //将请求结果保存 ..eg:
+        //send a http request then save response to item in main thread
         NSString *uid = @"123";
         id httpResponse = uid;
         item.result = httpResponse;

@@ -20,7 +20,6 @@ typedef NS_ENUM(NSInteger, PutType) {
 
 @interface BFPopRuleItem : NSObject
 
-@property (nonatomic, assign) NSInteger popIndex;
 @property (nonatomic, assign) PutType type;
 @property (nonatomic, strong) id result; /**< http response*/
 

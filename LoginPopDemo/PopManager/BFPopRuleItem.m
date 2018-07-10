@@ -7,37 +7,18 @@
 //
 
 #import "BFPopRuleItem.h"
-#import "BFPopSequenceRule.h"
+#import "BFAlertVC+PopRule.h"
 
 @implementation BFPopRuleItem
+
+- (void)dealloc {
+    NSLog(@"dealloc - %@", self.className);
+}
 
 #pragma mark - Setter
 - (void)setResult:(id)result {
     _result = result;
     [self putCurrent];
-}
-
-#pragma mark - Public
-- (void)putCurrent {
-    if (self.curPut) {
-        self.curPut(self, self.result);
-    }
-}
-
-- (void)putNext {
-    BFPopRuleItem *nt = self.next;
-    [BFPopSequenceRule prepareForNext];
-    
-    if (self.type == PutTypeSerial) {
-        if (nt.request) {
-            nt.request(nt, nil);
-        }
-    }
-    else if (self.type == PutTypeConcurrent) {
-        if (nt.result) {
-            nt.curPut(nt, nt.result);
-        }
-    }
 }
 
 @end

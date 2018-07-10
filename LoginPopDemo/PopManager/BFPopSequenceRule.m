@@ -7,109 +7,81 @@
 //
 
 #import "BFPopSequenceRule.h"
-#import "BFPopRuleItem.h"
 #import "BFAlertVC+PopRule.h"
-#import "NSArray+ZXTool.h"
 
-//PopViews all 业务view
+//PopViews all 登陆pop业务view
 #import "PopAuthResultView.h"
 
-NSMutableArray *_sMArr;
-BFPopRuleItem *_needShowIndex;
 
 @implementation BFPopSequenceRule
 
 + (void)load {
-    [super load];
-    [self makeRule];
+    [self clearData];
 }
 
-+ (void)makeRule {
-    _sMArr = @[].mutableCopy;
-    _needShowIndex = nil;
+//MARK: Public
++ (void)addRule:(BFPopRuleItem *)item {
+    NSAssert(item.request != nil, @"item request must not nil");
+    NSAssert(item.curPut != nil, @"item curPut must not nil");
     
-    BFPopRuleItem *t1 = [self authPopItem];
-    BFPopRuleItem *test = [self authPopItem];
-    BFPopRuleItem *test2 = [self authPopItem];
+    BOOL concurrent = [self isConcurrent];
+    if (concurrent) {
+        item.type = PutTypeConcurrent;
+    } else {
+        item.type = PutTypeSerial;
+    }
+    if ([NSArray isEmpty:_sMArr] == NO) {
+        BFPopRuleItem *last = _sMArr.lastObject;
+        last.next = item;
+        [_sMArr addObject:item];
+        if (concurrent) {
+            item.request(item, nil);
+        }
+    }
+    else {
+        [_sMArr addObject:item];
+        _needShowIndex = item;
+        item.request(item, nil);
+    }
+}
+
++ (BOOL)isConcurrent {
+    return YES; //YES 并发，NO 串行
+}
+
+@end
+
+
+@implementation BFPopSequenceRule (LoginScene)
+
++ (void)popLoginScene {
+    //demo
+    BFPopRuleItem *auth = [self authPopItem];
+    [self addRule:auth];
     
-    //finally
-    [_sMArr addObjectsFromArray:@[t1,test,test2]];
-    for (int i = 0; i < _sMArr.count; i ++) {
-        BFPopRuleItem *preT = [_sMArr safeObjectAtIndex:i-1];
-        BFPopRuleItem *t = _sMArr[i];
-        preT.next = t;
-    }
-    _needShowIndex = _sMArr.firstObject;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self addRule:[self authPopItem]];
+    });
 }
-
-#pragma mark - Public
-+ (void)serialPut {
-    for (BFPopRuleItem *t in _sMArr) {
-        t.type = PutTypeSerial;
-    }
-    BFPopRuleItem *first = _sMArr.firstObject;
-    //NS_BLOCK_ASSERTIONS :release 下阻止 assert 生效
-    NSAssert(first.request != nil, @"request handle must not nil");
-    first.request(first, nil);
-}
-
-+ (void)concurrentPut {
-    for (BFPopRuleItem *t in _sMArr) {
-        t.type = PutTypeConcurrent;
-        NSAssert(t.request != nil, @"request handle must not nil");
-        t.request(t, nil);
-    }
-}
-
-#pragma mark - Private
-
-+ (void)clearData {
-    _sMArr = nil;
-    _needShowIndex = nil;
-}
-
-+ (void)prepareForNext {
-    _needShowIndex = _needShowIndex.next;
-}
-
-#pragma mark - Core
-
-+ (BOOL)isIndexReadyForItem:(BFPopRuleItem *)item {
-    if (item != _needShowIndex) {
-        return NO;
-    }
-    return YES;
-}
-
-+ (void)showCurPopView:(UIView *)view withItem:(BFPopRuleItem *)item {
-    [ZXRouter showPopView:view withRule:item];
-    if (item == _sMArr.lastObject) {
-        [self clearData];
-    }
-}
-
-#pragma mark - Getter 
 
 + (BFPopRuleItem *)authPopItem {
     //请求认证结果弹窗
     BFPopRuleItem *t = BFPopRuleItem.new;
     t.request = ^(BFPopRuleItem *item, id future) {
-        //将请求结果保存 ..eg:
-        //send a http request then save response to item in main thread
-        NSString *uid = @"123";
-        id httpResponse = uid;
-        item.result = httpResponse;
+        //mock a request 将结果保存 ..eg:
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSDictionary *response = @{@"code":@(0)};
+            item.result = response;
+        });
     };
-    t.curPut = ^(BFPopRuleItem *item, id result) {
-        //根据结果决定 是否展示自己 || 展示下一个..eg:
-        if ([result isEqualToString: @"123"] == NO) {
-            [item putNext];
-            return;
+    
+    t.curPut = ^UIView *(BFPopRuleItem *item, id result) {
+        if ([[result objectForKey:@"code"] isEqual:@(0)] == NO) {
+            return nil;
         }
-        if ([self isIndexReadyForItem:item]) { //must call
-            PopAuthResultView *v =  DVLLoadNib(@"PopAuthResultView");
-            [self showCurPopView:v withItem:item];
-        }
+        PopAuthResultView *v = DVLLoadNib(@"PopAuthResultView");
+        v.result = result;
+        return v;
     };
     return t;
 }

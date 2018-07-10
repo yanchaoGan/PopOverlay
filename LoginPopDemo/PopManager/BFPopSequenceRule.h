@@ -7,15 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BFPopKit.h"
 
 @interface BFPopSequenceRule : NSObject
 
-//Public
-+ (void)serialPut;
-+ (void)concurrentPut;
-
-//Private
-+ (void)clearData;
-+ (void)prepareForNext;
+//for any other Scene. you can use this
++ (void)addRule:(BFPopRuleItem *)item;
 
 @end
+
+
+
+@interface BFPopSequenceRule (LoginScene)
+
+//Demo
+//提供一个简单的登陆后弹窗场景
+//以及 使用模板
++ (void)popLoginScene;
+
+@end
+

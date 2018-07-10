@@ -22,7 +22,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [BFPopSequenceRule serialPut];
+    [BFPopSequenceRule popLoginScene];
 }
 
 

@@ -73,15 +73,16 @@ return value; \
 return nil; \
 }
 
+
 //assgin 对应实现
 #define _bf_assign_property(type, name) \
 property (nonatomic, assign, setter=set__##name:, getter=__##name) type name
 
 #define _bf_assign_implement(type, name) \
-- (void)set__##name:(type)name   \
-{ \
-char *p = bf_str_c(type); \
-NSString *totype = [NSString stringWithUTF8String:p]; \
+- (void)set__##name:(type)name \
+{\
+char *p = bf_str_c(type);\
+NSString *totype = [NSString stringWithUTF8String:p];\
 if ([totype containsString:@"int"] || \
 [totype containsString:@"float"]  \
 ) { \
@@ -90,18 +91,17 @@ id value = @(name);\
 } \
 } \
 - (type)__##name { \
-type value = [self getAssociatedValueForKey:#name]; \
+id value = [self getAssociatedValueForKey:#name]; \
 char *p = bf_str_c(type); \
 NSString *totype = [NSString stringWithUTF8String:p]; \
-if ([totype containsString:@"int"] { \
-return [value intValue] \
+if ([totype containsString:@"int"]) { \
+return [value intValue]; \
 } \
-else if [totype containsString:@"float"]) { \
+else if ([totype containsString:@"float"]) { \
 return [value floatValue]; \
 } \
 return 0; \
 }
-
 
 
 

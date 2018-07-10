@@ -10,24 +10,19 @@
 
 @class BFPopRuleItem;
 
+//send a http request
 typedef void(^requestAction)(BFPopRuleItem *item, id future);
-typedef void(^putAction)(BFPopRuleItem *item, id httpResponse);
 
-typedef NS_ENUM(NSInteger, PutType) {
-    PutTypeSerial,
-    PutTypeConcurrent,
-};
+//return UIView * is show, or nil go next
+typedef UIView *(^putAction)(BFPopRuleItem *item, id result);
 
 @interface BFPopRuleItem : NSObject
 
-@property (nonatomic, assign) PutType type;
-@property (nonatomic, strong) id result; /**< http response*/
+//step 1
+@property (nonatomic, copy) requestAction request;  //send a request in block
+@property (nonatomic, strong)id result; //save a response in block
 
-@property (nonatomic, copy) requestAction request; //在request中 保存 result
+//step 2
 @property (nonatomic, copy) putAction curPut;
-
-@property (nonatomic, strong) BFPopRuleItem *next;
-
-- (void)putNext;
 
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PopAuthResultView : UIView
-
+@property (nonatomic, strong) id result;
 @end

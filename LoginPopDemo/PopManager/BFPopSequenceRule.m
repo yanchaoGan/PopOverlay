@@ -40,13 +40,20 @@
     }
     else {
         [_sMArr addObject:item];
-        _needShowIndex = item;
+        if (concurrent == NO) {
+            _needShowIndex = item;
+        }
         item.request(item, nil);
     }
 }
 
+#pragma mark - Helper
 + (BOOL)isConcurrent {
-    return YES; //YES 并发，NO 串行
+    return YES;
+}
+
++ (BOOL)isImmediatelyPut {
+    return YES;
 }
 
 @end
@@ -56,20 +63,32 @@
 
 + (void)popLoginScene {
     //demo
-    BFPopRuleItem *auth = [self authPopItem];
-    [self addRule:auth];
+    [self addRule:[self authPopItem]];
+    [self addRule:[self authPopItem]];
+    [self addRule:[self authPopItem]];
+    [self addRule:[self authPopItem]];
+    [self addRule:[self authPopItem]];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self addRule:[self authPopItem]];
+        [self addRule:[self authPopItem]];
+        [self addRule:[self authPopItem]];
+        [self addRule:[self authPopItem]];
         [self addRule:[self authPopItem]];
     });
 }
 
 + (BFPopRuleItem *)authPopItem {
+    static int i = 0;
+    i++;
+    NSInteger tmp = i;
     //请求认证结果弹窗
     BFPopRuleItem *t = BFPopRuleItem.new;
     t.request = ^(BFPopRuleItem *item, id future) {
         //mock a request 将结果保存 ..eg:
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSInteger interval = arc4random() % 10;
+        NSLog(@"第%zi个，time %zi",tmp,interval);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSDictionary *response = @{@"code":@(0)};
             item.result = response;
         });
@@ -79,8 +98,10 @@
         if ([[result objectForKey:@"code"] isEqual:@(0)] == NO) {
             return nil;
         }
+    
         PopAuthResultView *v = DVLLoadNib(@"PopAuthResultView");
         v.result = result;
+        v.testLabel.text = [NSString stringWithFormat:@"test %zi",tmp];
         return v;
     };
     return t;

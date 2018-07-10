@@ -19,10 +19,18 @@ BFPopRuleItem * _needShowIndex;
     _needShowIndex = nil;
 }
 
+//Serial call
 + (void)prepareForNext {
     id cur = _needShowIndex;
     [_sMArr removeObject:cur];
     _needShowIndex = _needShowIndex.next;
+}
+
+//Concurrent call
++ (void)preparForCanUsedItem:(BFPopRuleItem *)item {
+    id cur = _needShowIndex;
+    [_sMArr removeObject:cur]; //next链 会中断
+    _needShowIndex = item;
 }
 
 //MARK: Core
@@ -45,7 +53,22 @@ BFPopRuleItem * _needShowIndex;
 bf_strong_implement(BFPopRuleItem *, next)
 bf_assign_implement(int, type)
 
+static BOOL concurrentPatch = NO;
 - (void)putCurrent {
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if ([BFPopSequenceRule respondsToSelector:@selector(isImmediatelyPut)]) {
+            concurrentPatch = [BFPopSequenceRule isImmediatelyPut];
+        }
+    });
+    
+    if (concurrentPatch) {
+        if (_needShowIndex == nil) {
+            _needShowIndex = self;
+        }
+    }
+
     //are you ok
     BOOL indexReady = [BFPopSequenceRule isIndexReadyForItem:self];
     if (indexReady == NO) {
@@ -62,10 +85,21 @@ bf_assign_implement(int, type)
     }
 }
 
+
 - (void)putNext {
-    BFPopRuleItem *nt = self.next;
-    [BFPopSequenceRule prepareForNext];
     
+    BFPopRuleItem *nt = nil;
+    //prepare
+    if (concurrentPatch) {
+        nt = [self itemForConcurrentNext];
+        [BFPopSequenceRule preparForCanUsedItem:nt];
+    }
+    else {
+        nt = self.next;
+        [BFPopSequenceRule prepareForNext];
+    }
+    
+    //send request
     if (self.type == PutTypeSerial) {
         if (nt.request) {
             nt.request(nt, nil);
@@ -77,6 +111,32 @@ bf_assign_implement(int, type)
         }
     }
 }
+
+- (BFPopRuleItem *)itemForConcurrentNext {
+    BFPopRuleItem *nt = nil;
+    for (BFPopRuleItem *rt in _sMArr) {
+        if (rt != self && rt.result) {
+            nt = rt;
+            break;
+        }
+    }
+    if (nt == nil) {
+        NSInteger count = _sMArr.count;
+        if (count <= 1) {
+        }
+        else {
+            //找第一个等待
+            for (BFPopRuleItem *rt in _sMArr) {
+                if (rt != self) {
+                    nt = rt;
+                    break;
+                }
+            }
+        }
+    }
+    return nt;
+}
+
 
 @end
 

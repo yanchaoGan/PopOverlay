@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BFPopKit.h"
 
-@interface BFPopSequenceRule : NSObject
+@interface BFPopSequenceRule : NSObject <BFPopConfigInterface>
 
 //for any other Scene. you can use this
 + (void)addRule:(BFPopRuleItem *)item;

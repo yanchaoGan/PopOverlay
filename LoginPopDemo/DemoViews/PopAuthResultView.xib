@@ -23,9 +23,19 @@
                         <action selector="closeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="kcQ-SA-7bz"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pj-PU-kpE">
+                    <rect key="frame" x="26" y="155" width="171" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="testLabel" destination="7pj-PU-kpE" id="TaN-rz-EUW"/>
+            </connections>
             <point key="canvasLocation" x="32.5" y="53.5"/>
         </view>
     </objects>

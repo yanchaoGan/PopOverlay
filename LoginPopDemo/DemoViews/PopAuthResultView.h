@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PopAuthResultView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *testLabel;
 @property (nonatomic, strong) id result;
 @end

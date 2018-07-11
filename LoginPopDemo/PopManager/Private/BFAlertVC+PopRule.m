@@ -114,23 +114,25 @@ static BOOL concurrentPatch = NO;
 
 - (BFPopRuleItem *)itemForConcurrentNext {
     BFPopRuleItem *nt = nil;
-    for (BFPopRuleItem *rt in _sMArr) {
+    
+    NSInteger cur = [_sMArr indexOfObject:self];
+    NSInteger count = _sMArr.count;
+    
+    //顺序后找
+    for (NSInteger index = cur + 1; index < count; index ++) {
+        BFPopRuleItem *rt = [_sMArr safeObjectAtIndex:index];
         if (rt != self && rt.result) {
             nt = rt;
             break;
         }
     }
+    //从前找
     if (nt == nil) {
-        NSInteger count = _sMArr.count;
-        if (count <= 1) {
-        }
-        else {
-            //找第一个等待
-            for (BFPopRuleItem *rt in _sMArr) {
-                if (rt != self) {
-                    nt = rt;
-                    break;
-                }
+        for (NSInteger index = 0; index < cur; index ++) {
+            BFPopRuleItem *rt = [_sMArr safeObjectAtIndex:index];
+            if (rt != self && rt.result) {
+                nt = rt;
+                break;
             }
         }
     }

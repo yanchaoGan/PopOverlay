@@ -23,7 +23,6 @@
 		0D8D390320F069AD003E89FD /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D390120F069AD003E89FD /* RIButtonItem.m */; };
 		0D8D390720F06A48003E89FD /* ZXRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8D390620F06A48003E89FD /* ZXRouter.m */; };
 		0DB139AB20F0798E00400A73 /* DVLColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB139A920F0798E00400A73 /* DVLColorUtil.m */; };
-		0DDBDDF920F07D7700A98E22 /* UIView+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DDBDDF820F07D7700A98E22 /* UIView+Ext.m */; };
 		0DDBDDFB20F07FB200A98E22 /* Launch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DDBDDFA20F07FB200A98E22 /* Launch.xib */; };
 		447B3F3C5C6F3936ACF29648 /* libPods-LoginPopDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE690DBB5E2CFF4E28AA546 /* libPods-LoginPopDemo.a */; };
 /* End PBXBuildFile section */
@@ -61,8 +60,6 @@
 		0D8D390620F06A48003E89FD /* ZXRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRouter.m; sourceTree = "<group>"; };
 		0DB139A920F0798E00400A73 /* DVLColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVLColorUtil.m; sourceTree = "<group>"; };
 		0DB139AA20F0798E00400A73 /* DVLColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVLColorUtil.h; sourceTree = "<group>"; };
-		0DDBDDF720F07D7700A98E22 /* UIView+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Ext.h"; sourceTree = "<group>"; };
-		0DDBDDF820F07D7700A98E22 /* UIView+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Ext.m"; sourceTree = "<group>"; };
 		0DDBDDFA20F07FB200A98E22 /* Launch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Launch.xib; sourceTree = "<group>"; };
 		0DF3311C20F4A0FD0090A069 /* BFPopKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPopKit.h; sourceTree = "<group>"; };
 		1DED1968A946E9315DE03781 /* Pods-LoginPopDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginPopDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoginPopDemo/Pods-LoginPopDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,10 +99,8 @@
 		0D8D38D320F06898003E89FD /* LoginPopDemo */ = {
 			isa = PBXGroup;
 			children = (
-				0D8D390420F069BC003E89FD /* Depend */,
-				0D8D390020F0694B003E89FD /* UIUtil */,
-				0D8D38F120F068EB003E89FD /* DemoViews */,
 				0D8D38EA20F068EB003E89FD /* PopManager */,
+				0D8D38F120F068EB003E89FD /* Demo */,
 				0D8D38D420F06898003E89FD /* AppDelegate.h */,
 				0D8D38D520F06898003E89FD /* AppDelegate.m */,
 				0D8D38D720F06898003E89FD /* ViewController.h */,
@@ -123,6 +118,8 @@
 		0D8D38EA20F068EB003E89FD /* PopManager */ = {
 			isa = PBXGroup;
 			children = (
+				0D8D390420F069BC003E89FD /* Depend */,
+				0D8D390020F0694B003E89FD /* UIUtil */,
 				0DF3311D20F4A4AE0090A069 /* Private */,
 				0DF3311C20F4A0FD0090A069 /* BFPopKit.h */,
 				0D8D38F020F068EB003E89FD /* BFPopSequenceRule.h */,
@@ -133,14 +130,14 @@
 			path = PopManager;
 			sourceTree = "<group>";
 		};
-		0D8D38F120F068EB003E89FD /* DemoViews */ = {
+		0D8D38F120F068EB003E89FD /* Demo */ = {
 			isa = PBXGroup;
 			children = (
 				0D8D38F320F068EB003E89FD /* PopAuthResultView.xib */,
 				0D8D38F220F068EB003E89FD /* PopAuthResultView.h */,
 				0D8D38F420F068EB003E89FD /* PopAuthResultView.m */,
 			);
-			path = DemoViews;
+			path = Demo;
 			sourceTree = "<group>";
 		};
 		0D8D390020F0694B003E89FD /* UIUtil */ = {
@@ -157,8 +154,6 @@
 		0D8D390420F069BC003E89FD /* Depend */ = {
 			isa = PBXGroup;
 			children = (
-				0DDBDDF720F07D7700A98E22 /* UIView+Ext.h */,
-				0DDBDDF820F07D7700A98E22 /* UIView+Ext.m */,
 				0DB139AA20F0798E00400A73 /* DVLColorUtil.h */,
 				0DB139A920F0798E00400A73 /* DVLColorUtil.m */,
 				0D6981DC20F070E100B0008C /* NSArray+ZXTool.h */,
@@ -294,7 +289,6 @@
 				0D8D390320F069AD003E89FD /* RIButtonItem.m in Sources */,
 				0D6981DD20F070E100B0008C /* NSArray+ZXTool.m in Sources */,
 				0D8D38F920F068EB003E89FD /* PopAuthResultView.m in Sources */,
-				0DDBDDF920F07D7700A98E22 /* UIView+Ext.m in Sources */,
 				0D8D38D920F06898003E89FD /* ViewController.m in Sources */,
 				0D8D38E420F06899003E89FD /* main.m in Sources */,
 				0DB139AB20F0798E00400A73 /* DVLColorUtil.m in Sources */,

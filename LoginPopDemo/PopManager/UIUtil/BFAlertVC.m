@@ -39,10 +39,15 @@
     }
 }
 
-- (void)_initUI {
-    [self.view addSubview:self.bgView];
-    self.view.backgroundColor = UIColor.clearColor;
-    [self.view addSubview:self.bgBtn];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    if (!self.contentView.superview) {
+        [self _initContentView];
+    }
+}
+
+- (void)_initContentView {
     //mark add child
     if ([self.alertContent isKindOfClass:[UIViewController class]]) {
         [self addChildViewController:self.alertContent];
@@ -74,6 +79,12 @@
     contentView.frame = frame;
 }
 
+- (void)_initUI {
+    [self.view addSubview:self.bgView];
+    self.view.backgroundColor = UIColor.clearColor;
+    [self.view addSubview:self.bgBtn];
+}
+
 #pragma mark - Action
 - (void)onBgBtnAction:(UIButton *)btn {
     BOOL enable = NO;
@@ -95,18 +106,12 @@
 }
 
 - (void)r_close {
-    
     [self.contentView removeFromSuperview];
+    [self dismissViewControllerAnimated:NO completion:self.completeBlock?:nil];
     
     if ([self.alertContent respondsToSelector:@selector(bf_alertClose)]) {
         [self.alertContent bf_alertDidClose];
     }
-    
-    if (self.completeBlock) {
-        self.completeBlock();
-    }
-    
-    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 
@@ -175,7 +180,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         _bgView = [[UIView alloc] initWithFrame:self.view.bounds];
-        _bgView.backgroundColor = [UIColor colorFromString:@"#000000" alpha:0.3];
+        _bgView.backgroundColor = [UIColor colorFromString:@"#000000" alpha:0.5];
         _bgView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     }
     return _bgView;
@@ -190,7 +195,6 @@
 }
 
 @end
-
 
 
 @implementation NSObject (bf_alert)

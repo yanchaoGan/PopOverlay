@@ -17,6 +17,7 @@
 
 #pragma mark - Setter
 - (void)setResult:(id)result {
+    NSAssert(result != nil, @"result must not nil");
     _result = result;
     [self putCurrent];
 }

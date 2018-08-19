@@ -7,7 +7,6 @@
 //
 
 #import "BFSimpleAlertView.h"
-#import "UIView+YYAdd.h"
 
 @interface BFSimpleAlertView_BGView : UIView
 @end
@@ -145,7 +144,7 @@
         UIButton *lastBtn;
         NSInteger count = self.btns.count;
         for (int i = 0; i < count; i++) {
-            it = [self.btns safeObjectAtIndex:0];
+            it = [self.btns safeObjectAtIndex:i];
             if (!color) {
                 color = DVLColorGenAlpha(@"#434d52", 0.7);
             }

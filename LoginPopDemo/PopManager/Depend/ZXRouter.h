@@ -22,6 +22,4 @@
 + (void)showAlertVc:(UIViewController *)vc;
 + (void)showAlertView:(UIView *)view;
 
-
-
 @end

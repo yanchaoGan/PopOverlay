@@ -21,7 +21,5 @@
 + (id)itemWithLabel:(NSString *)inLabel;
 + (id)itemWithLabel:(NSString *)inLabel action:(void(^)(void))action;
 
-
-
 @end
 

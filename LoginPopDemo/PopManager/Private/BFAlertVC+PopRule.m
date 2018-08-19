@@ -29,7 +29,7 @@ BFPopRuleItem * _needShowIndex;
 //Concurrent call
 + (void)preparForCanUsedItem:(BFPopRuleItem *)item {
     id cur = _needShowIndex;
-    [_sMArr removeObject:cur]; //next链 会中断
+    [_sMArr removeObject:cur];
     _needShowIndex = item;
 }
 
@@ -55,20 +55,19 @@ bf_assign_implement(int, type)
 
 static BOOL concurrentPatch = NO;
 - (void)putCurrent {
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if ([BFPopSequenceRule respondsToSelector:@selector(isImmediatelyPut)]) {
-            concurrentPatch = [BFPopSequenceRule isImmediatelyPut];
-        }
-    });
-    
-    if (concurrentPatch) {
-        if (_needShowIndex == nil) {
-            _needShowIndex = self;
-        }
+    @synchronized(self) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            if ([BFPopSequenceRule respondsToSelector:@selector(isImmediatelyPut)]) {
+                concurrentPatch = [BFPopSequenceRule isImmediatelyPut];
+            }
+        });
     }
-
+    
+    if (_needShowIndex == nil) {
+        _needShowIndex = self;
+    }
+    
     //are you ok
     BOOL indexReady = [BFPopSequenceRule isIndexReadyForItem:self];
     if (indexReady == NO) {
@@ -114,11 +113,10 @@ static BOOL concurrentPatch = NO;
 
 - (BFPopRuleItem *)itemForConcurrentNext {
     BFPopRuleItem *nt = nil;
-    
     NSInteger cur = [_sMArr indexOfObject:self];
     NSInteger count = _sMArr.count;
     
-    //顺序后找
+    //index ..< count
     for (NSInteger index = cur + 1; index < count; index ++) {
         BFPopRuleItem *rt = [_sMArr safeObjectAtIndex:index];
         if (rt != self && rt.result) {
@@ -126,7 +124,7 @@ static BOOL concurrentPatch = NO;
             break;
         }
     }
-    //从前找
+    //0 ..< index
     if (nt == nil) {
         for (NSInteger index = 0; index < cur; index ++) {
             BFPopRuleItem *rt = [_sMArr safeObjectAtIndex:index];

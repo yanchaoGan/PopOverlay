@@ -14,8 +14,7 @@
     return _navigator;
 }
 
-+ (instancetype)sharedInstance
-{
++ (instancetype)sharedInstance {
     static ZXRouter *_sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -24,8 +23,7 @@
     return _sharedInstance;
 }
 
-+ (UIViewController *)curViewController
-{
++ (UIViewController *)curViewController {
     UIViewController *topViewController = [self topViewController];
     if ([topViewController isKindOfClass:[UINavigationController class]]) {
         topViewController = [(UINavigationController *)topViewController topViewController];
@@ -33,19 +31,14 @@
     return topViewController;
 }
 
-
-+ (UIViewController *)topViewController
-{
++ (UIViewController *)topViewController {
     UIViewController *rootNavigator = [ZXRouter sharedInstance].navigator;
     UIViewController *presentController = rootNavigator;
-    while (presentController.presentedViewController)
-    {
+    while (presentController.presentedViewController) {
         presentController = presentController.presentedViewController;
     }
     return presentController;
 }
-
-
 
 + (UIWindow *)keyWindow {
     return UIApplication.sharedApplication.delegate.window;
@@ -64,23 +57,21 @@
     UIViewController *presentController = [self topViewController];
     if (![controller isKindOfClass:[UINavigationController class]]) {
         controller = [[UINavigationController alloc] initWithRootViewController:controller];
-        [(UINavigationController *)controller setNavigationBarHidden:YES];
     }
-    controller.modalPresentationStyle = style;//UIModalPresentationOverFullScreen;
+    controller.modalPresentationStyle = style;
     controller.modalPresentationCapturesStatusBarAppearance = YES;
     [presentController presentViewController:controller animated:animated completion:nil];
 }
 
-
 + (void)showAlertVc:(UIViewController *)vc {
     BFAlertVC *alertVc = [[BFAlertVC alloc] init];
-    alertVc.alertContent = vc;
+    alertVc.alertContent = (id)vc;
     [self presentController:alertVc animated:NO];
 }
 
 + (void)showAlertView:(UIView *)view {
     BFAlertVC *alertVc = [[BFAlertVC alloc] init];
-    alertVc.alertContent = view;
+    alertVc.alertContent = (id)view;
     [self presentController:alertVc animated:NO];
 }
 
